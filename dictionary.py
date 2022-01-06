@@ -41,4 +41,18 @@ if "jack" not in phonebook:
     
 print(phonebook)
 
+# find a name that appears twice in a list
+# assume only one name is repeated
+given_list = ['Tom', 'Pabi', 'Tom']
+def appear_twice(given_list):
+    dictn = {}
+    for name in given_list:
+        if name in dictn:
+            return name
+        else:
+            dictn[name] = 1
+    return ''
+
+    
+
 
