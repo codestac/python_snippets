@@ -24,5 +24,17 @@ for i in numbers:
     
     if(i % 2 == 0):
         print(i)
-        
-        
+
+
+# find the maximum number in the list 
+
+arr = [1,2,3,4,5,5]
+
+def max_number(arr):
+    max = None
+    for item in arr:
+        if max == None:
+            max = item 
+        elif (item > max):
+            max = item
+    return max

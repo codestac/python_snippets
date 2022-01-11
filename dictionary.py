@@ -54,5 +54,22 @@ def appear_twice(given_list):
     return ''
 
     
+# sum of two numbers should be 10 
+# do i need to print anything - yes the numbers and return nothing
+# will there be integers - yes only integers
+# will there be a 2 or mare pairs to show the addition to 10 - you can choose which one 
+# numbers can be negative
+# if there are no pairs taht add up to 10 - return nothing found
 
+given_list = [1,3,4,6,5]
+
+def sum_10(given_list):
+    dictn = {};
+    for num in given_num:
+        if (10 - num) in dictn:
+            print(str(10-num) + ',' + str(item))
+            return
+        else:
+            dictn[num] = 1 #value can be anything but I kept 1.
+    print('We dont have a pair that adds up to 10')        
 
