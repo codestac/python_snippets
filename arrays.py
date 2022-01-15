@@ -103,8 +103,8 @@ def finder2(arr1, arr2):
     for num in arr2:
         d[num] += 1
     
-    for num in arr1
-        if d[num] == 0
+    for num in arr1:
+        if d[num] == 0:
             return num
         else:
             d[num] -= 1
@@ -116,7 +116,7 @@ def finder3(arr1, arr2):
     #perform XOR between the numbers in the array
     for num in arr1 + arr2:
         result ^= num
-        print result
+        print(result)
     
     return result
         
@@ -151,14 +151,99 @@ def rev_word2(s):
 def rev_word3(s):
     words = []
     length = len(s)
-    space = [" "]
+    spaces = [" "]
     i = 0 
     
     while i < length:
-        if s[i] not in space:
-            word_start = if I < length and s[i] not in spaces:
+        if s[i] not in spaces:
+            word_start = 1
+            while i < length and s[i] not in spaces:
                 i += 1
-            words.append(s[word_strat::i])
+            words.append(s[word_start::i])
         i =+ 1
      
-    return " ".join(reveresed(words))                
+    return " ".join(reveresed(words))    
+
+print(rev_word3("This is Pabi"))          
+
+
+################################
+# first and last index of a target in an array
+# [2,3,4,5,5,5,5,6,7] , target 5 = > [3, 6] if not found return [-1, -1]
+# time complexity O(n) space complexity O(n)
+
+def find_index(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            start = i
+            while i+1 < len(arr) and arr[i+1] == target:
+                i += 1
+                return [start, i]
+            
+    return [-1, -1]
+
+# with a binary search if the array is already sorted
+
+def find_start(arr, target):
+    if arr[0] == target:
+        return 0
+    
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] <= target and arr[mid-1] < target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+def find_end(arr, target):
+    if arr[-1] == target:
+        return len(arr) - 1
+    
+    left, right = 0, len(arr) -1
+    
+    while left <= right:
+        mid == (left + right) // 2
+        if arr[mid] == target and arr[mid+1] > target:
+            return mid
+        elif arr[mid] > target:
+            right = mid - 1
+        else:
+            left = mid + 1
+    return -1
+
+def first_and_last(arr, target):
+    if len(arr) == 0 
+        or arr[0] > target
+        or arr[-1] < target:
+            return [-1, -1]
+        
+        start = find_start(arr, target)
+        end = find_end(arr, target)
+        return [start, end]
+    
+# As we are using BInary search Time complexity is 2 * O(log n) => O(log n)
+
+
+## kth largest element in an array
+## arr = [4,2,9,7,5,6,7,1,3]
+## k = 4, output: 6 = > 1st largest element is 9, 2nd largetst is 7, 3rd large is 7, 4th large is 6
+
+def kth_largest(arr, k):
+    for i in range(k - 1):
+        arr.remove(max(arr))
+    return max(arr)
+
+# this has a time complexity of 2(k-1(n)= 2kn - n = O(kn)
+# space complexity is O(n)
+
+# this can be completed by sorting
+
+def kth_large_sort(arr, k):
+    n = len(arr)
+    arr.sort() #O(nlogn)
+    return arr[n - k] #O(1)
+    
