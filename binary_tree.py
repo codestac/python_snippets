@@ -1,7 +1,7 @@
 # check if the binary tree is symmetric
 
 def tree_sum(root):
-    if root is NOde:
+    if root is Node:
         return 0
     
     else:

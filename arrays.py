@@ -79,7 +79,7 @@ print(find_sum([1,3,2,3,4], 6))
 
 ##############################################
 # find the missing value from the second array
-# [1,2,3.4.5] & [1,2,3,4]
+# [1,2,3,4,5] & [1,2,3,4]
 
 # it doesnt have negative values
 # it can have duplicates
@@ -216,14 +216,12 @@ def find_end(arr, target):
     return -1
 
 def first_and_last(arr, target):
-    if len(arr) == 0 
-        or arr[0] > target
-        or arr[-1] < target:
+    if len(arr) == 0 or arr[0] > target or arr[-1] < target:
             return [-1, -1]
         
-        start = find_start(arr, target)
-        end = find_end(arr, target)
-        return [start, end]
+    start = find_start(arr, target)
+    end = find_end(arr, target)
+    return [start, end]
     
 # As we are using BInary search Time complexity is 2 * O(log n) => O(log n)
 
@@ -246,4 +244,17 @@ def kth_large_sort(arr, k):
     n = len(arr)
     arr.sort() #O(nlogn)
     return arr[n - k] #O(1)
-    
+
+
+# 2 numbers in array that add up to 11
+
+def sum(arr, k):
+    for i in arr:
+        target = arr[i] - k
+        if target in arr:
+            return (min(target, arr[i]), max(target, arr[i]))
+        else:
+            return False
+
+ 
+            
