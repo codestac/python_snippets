@@ -1,4 +1,3 @@
-
 ####################################
 # array pair sum
 # output all the unique pairs that have the sum of a specific value

@@ -32,7 +32,7 @@ def pal_check(a_string):
     
     still_equal = True
     
-    while char_deque.size() > 1 and still_qual:
+    while char_deque.size() > 1 and still_equal:
         first = char_deque.remove_front()
         last = char_deque.remove_rear()
         if first != rear:
