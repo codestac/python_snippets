@@ -19,6 +19,7 @@ db_host = "lambdatopg.cowliydpbvqq.us-east-1.rds.amazonaws.com"
 db_port = 5432
 db_name = "postgres"
 db_pwd = "postgres"
+db_user = "postgres"
 #s3 bucket location
 s3_bucket_name = "copy_files_bucket" 
 upload_folder_name = 'upload/'
@@ -63,7 +64,7 @@ def create_table(conn, table_name, headers):
       suffix_str = 'VARCHAR (0) NOT nULL'
       header_w_suffix = [col + suffix_str for col in headers]
       table_col_list = ",".join(header_w_suffix)
-      create_table_query = 'CREATE TABLE IF NOT EXISTS {table} ({cols})'.format(table= table_name, cols=table_col_list)
+      create_table_query = 'CREATE TABLE IF NOT EXISTS {table} ({cols})'.format(table = table_name, cols = table_col_list)
       print("create table qery: ", create_table_query)
       curs = conn.cursors()
       curs.execute(create_table_query)
@@ -73,12 +74,12 @@ def create_table(conn, table_name, headers):
       print("Cannot create table")
 
 def fetch_from_s3(bucket, key):
-   try:
-      s3_object = s3_client.get_object(Bucket=bucket, Key=(upload_folder_name+key))
+  try:
+      s3_object = s3_client.get_object(Bucket = bucket, Key = (upload_folder_name + key))
       csv_content = s3_object['body'].read().decode("utf-8").splitlines()
       csv_data = csv.reader(csv_content)
       return csv_data
-    except:
+  except:
       print("Cannot connect to s3 bucket")
       
 def create_record(obj, fields):
@@ -98,7 +99,7 @@ def fetch_data_from_rds(conn, event):
   if is_key_exists(event["queryStringParameters"], 'table'):
     table = event['queryStringParameters']['table']
     if(len(is_where_condition_exists(event))):
-      query = 'select * from {table} WHERE {condition}'.format(table=table, condition = is_where_condition_exists(event))
+      query = 'select * from {table} WHERE {condition}'.format(table = table, condition = is_where_condition_exists(event))
     else: query = 'select * from "{}"'.format(table)
     print(query)
     cursor= conn.cursor()
@@ -148,13 +149,14 @@ def remove_prefix(text, prefix):
     return text[len(prefix):]
   return text
 
+
 def remove_suffix(text, suffix):
   if text.endswith(suffix):
     return text[:-len(suffix)]
   return text
 
 def is_key_exists(event, key):
-  if key in event and event[Key] != None:
+  if key in event and event[key] != None:
     return True
   else: return False
 
